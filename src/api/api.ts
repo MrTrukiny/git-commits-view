@@ -1,8 +1,10 @@
+import { ICommits } from '../interfaces/IGitHub';
 import { configGithubRequest } from './utils';
 
-export const fetchGitHubAPI = async () => {
+export const fetchGitHubAPI = async (): Promise<ICommits[]> => {
   // Get GitHub fetch config
   const { url, options } = configGithubRequest();
+
   // Get GitHub data
   const data = await (await fetch(url, options)).json();
 

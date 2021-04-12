@@ -12,7 +12,7 @@ import { ICommits } from './interfaces/IGitHub';
 import { GlobalStyle, Wrapper } from './App.styles';
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [commits, setCommits] = useState<ICommits[]>([]);
 
   const fetchCommits = async () => {

@@ -4,3 +4,8 @@ export interface ICommits {
   date: string;
   commit: string;
 }
+
+export interface IGitHubFetchObject {
+  url: any;
+  options: any;
+}
