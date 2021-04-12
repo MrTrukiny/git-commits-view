@@ -8,27 +8,32 @@ import { GitCommitsList } from './components/Git-commits-list/Git-commits-list.c
 // Interfaces
 import { ICommits } from './interfaces/IGitHub';
 
+// Styles
+import { GlobalStyle, Wrapper } from './App.styles';
 
 const App = () => {
-  const [ loading, setLoading ] = useState(false);
-  const [ commits, setCommits ] = useState<ICommits[]>([])
-  
+  const [loading, setLoading] = useState(false);
+  const [commits, setCommits] = useState<ICommits[]>([]);
+
   const fetchCommits = async () => {
     setLoading(true);
-    const commits: ICommits[] = await fetchGitHubAPI();
+    const commits: ICommits[] | [] = await fetchGitHubAPI();
     setCommits(commits);
     setLoading(false);
-  }
+  };
 
   return (
-    <div className="App">
-      <button onClick={fetchCommits} >Fetch Commits</button>
-      {!loading && commits && <GitCommitsList 
-        commits={commits}
-      />}
-      Git Commits View
-    </div>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <h1>Git Commits View</h1>
+        <button className='fetchButton' onClick={fetchCommits}>
+          Fetch Commits
+        </button>
+        {!loading && !!commits.length && <GitCommitsList commits={commits} />}
+      </Wrapper>
+    </>
   );
-}
+};
 
 export default App;
